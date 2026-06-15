@@ -12,8 +12,7 @@ module Effect.Exception
   , throw
   , throwException
   , try
-  )
-  where
+  ) where
 
 import Prelude
 

@@ -3,4 +3,6 @@ set -euo pipefail
 
 echo "Building..."
 
-spago build --quiet
+spago build
+
+pslua --foreign-path . --ps-output output --entry Effect.Exception --lua-output-file dist/Effect.Exception.lua

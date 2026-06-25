@@ -1,6 +1,27 @@
 # Changelog
 
-Notable changes to this project are documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Notable changes to this Lua fork of `purescript-exceptions` are recorded here. The fork
+tracks its own release line (Lua 5.1 FFI on the [pslua](https://github.com/purescript-lua/purescript-lua)
+compiler); the upstream PureScript history is preserved below. The format
+is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
+fork entries are assembled from fragments in `changelog.d/` with
+[scriv](https://scriv.readthedocs.io/) on each release.
+
+<!-- scriv-insert-here -->
+
+## v6.1.1 - 2026-06-15
+
+### Fixed
+
+- `Effect.Exception` FFI for Lua 5.1: `catchException`, `throwException`,
+  `name`, and `errorWithCause` (#81-#84).
+
+<!-- scriv-end-here -->
+
+---
+
+The sections below are inherited from the upstream PureScript project and
+predate the Lua fork.
 
 ## [Unreleased]
 

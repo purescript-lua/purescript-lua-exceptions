@@ -1,6 +1,6 @@
 -- Regression guard for the Lua 5.1 FFI of Effect.Exception.
 --
--- Pins the four semantic fixes:
+-- Pins the semantic fixes:
 --   #81 catchException must RUN the handler Effect (trailing `()`), not return
 --       the unexecuted thunk.
 --   #82 throwException must preserve the message across throw/catch; Lua's
@@ -11,6 +11,10 @@
 --   #84 errorWithCause keeps the message pristine (the cause is unobservable
 --       through this binding — there is no `cause` accessor — so it is dropped
 --       rather than concatenated into the message).
+--   #269 errorWithName was missing from the fork. Upstream takes the message
+--        first and the name second (errorWithName(msg)(name)); the name is
+--        dropped like errorWithCause's cause, so `name` keeps answering the
+--        documented constant "Error".
 --
 -- `Effect a` in this backend is a zero-arg thunk that must be invoked to run.
 -- Run from the repo root: `lua test/regression/exception.lua`.
@@ -86,6 +90,15 @@ end
 
 -- Sanity: message of a plain error is the message.
 do check("message of a plain error", E.message(E.error("boom")) == "boom", "got " .. tostring(E.message(E.error("boom")))) end
+
+--------------------------------------------------------------------------------
+-- #269 errorWithName keeps the message; the name stays unobservable ----------
+
+do
+  local e = E.errorWithName("boom")("TypeError")
+  check("errorWithName message is the supplied msg", E.message(e) == "boom", "got " .. tostring(E.message(e)))
+  check("errorWithName name stays \"Error\"", E.name(e) == "Error", "got " .. tostring(E.name(e)))
+end
 
 --------------------------------------------------------------------------------
 

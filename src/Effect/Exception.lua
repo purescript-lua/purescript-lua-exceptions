@@ -8,6 +8,13 @@ return {
       return msg
     end
   end),
+  errorWithName = (function(msg)
+    return function(_name)
+      -- The name is unobservable through this binding (`name` always answers
+      -- the constant "Error"), so it is dropped like errorWithCause's cause.
+      return msg
+    end
+  end),
   message = (function(err) return err end),
   name = (function(_err)
     -- JS `e.name || "Error"`; the string-Error model carries no name field.

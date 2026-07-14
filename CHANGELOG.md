@@ -9,6 +9,16 @@ fork entries are assembled from fragments in `changelog.d/` with
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-v6.1.2'></a>
+## v6.1.2 - 2026-07-14
+
+### Added
+
+- `Effect.Exception.errorWithName` (upstream v6.1.0 parity, #269). Following
+  the fork's string-`Error` model, the name is unobservable: `message`
+  returns the supplied message and `name` keeps answering the constant
+  `"Error"`, the same precedent as `errorWithCause`'s dropped cause.
+
 ## v6.1.1 - 2026-06-15
 
 ### Fixed
